@@ -73,10 +73,16 @@ User manually pastes or types the message they received. The app generates reply
 ### UC-4: Live Conversation Mode
 User presses a "Live" button. The app continuously listens to what others are saying in a conversation (in-person or on a call), transcribes it, and surfaces reply suggestions in real time — quietly and discreetly on screen.
 
-### UC-5: Style Selection
+### UC-5: Initiate a Conversation (First Message)
+User wants to start a conversation, not reply to one. They describe the context — who they're reaching out to, what they want to say, and why — and the app drafts an opening message. Examples: reaching out to a recruiter, reconnecting with an old friend, pitching a collaboration, introducing yourself to a new colleague.
+
+### UC-6: Follow-Up When No Reply Received
+User sent a message (or used the app to draft one) and hasn't heard back. They tell the app how long it's been, and the app drafts a tactful follow-up. The follow-up is context-aware — a nudge to a friend feels different from chasing a business lead. User can choose the urgency and tone (gentle reminder vs. assertive follow-up).
+
+### UC-7: Style Selection
 After generating replies, user can request a different tone — more formal, more casual, shorter, friendlier, assertive, apologetic, humorous, etc.
 
-### UC-6: Language Output Choice
+### UC-8: Language Output Choice
 User can specify the language of the reply (e.g., "Reply in Marathi" or "Reply in formal Hindi with English tech terms").
 
 ---
@@ -107,6 +113,9 @@ User can specify the language of the reply (e.g., "Reply in Marathi" or "Reply i
 | 2–3 reply options per request | P0 | Varied tone/length per option |
 | Tone labels on each option | P0 | e.g., "Friendly", "Professional", "Concise" |
 | Regenerate / more options | P0 | Tap to get fresh suggestions |
+| **Initiate mode** — draft opening message | P0 | User describes context; app drafts cold/warm outreach, intro, pitch, etc. |
+| **Follow-up mode** — no reply nudge | P0 | User inputs original message + time elapsed; app drafts follow-up with selectable urgency (gentle / firm / final) |
+| Follow-up series (multi-step) | P1 | App suggests a sequence: nudge → reminder → final follow-up, spaced appropriately |
 | Tone slider / style picker | P1 | Formal ↔ Casual; Short ↔ Detailed |
 | Match sender's style | P1 | Analyze incoming message style and mirror it |
 | Custom tone presets | P2 | User-saved styles (e.g., "My work tone") |
@@ -189,6 +198,35 @@ Inspired by Google and Apple's minimalist app aesthetics:
 │                         │
 │  [↻ More options]       │
 │  [🎨 Change tone]       │
+└─────────────────────────┘
+
+┌─────────────────────────┐
+│  ← Start a Message      │  ← Initiate Screen
+│                         │
+│  Who are you writing to?│
+│  [                    ] │
+│                         │
+│  What's it about?       │
+│  [🎙 Speak] [⌨ Type]   │
+│                         │
+│  Tone: [Warm ▾]         │
+│  Platform: [Email ▾]    │
+└─────────────────────────┘
+
+┌─────────────────────────┐
+│  ← Follow Up            │  ← Follow-Up Screen
+│                         │
+│  Original message:      │
+│  [paste or describe]    │
+│                         │
+│  How long since sent?   │
+│  [1 day] [3 days] [1wk] │
+│                         │
+│  Urgency:               │
+│  ○ Gentle nudge         │
+│  ○ Clear reminder       │
+│  ○ Final follow-up      │
+│                    [→]  │
 └─────────────────────────┘
 
 ┌─────────────────────────┐
