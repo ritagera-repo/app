@@ -1,5 +1,5 @@
 # ReplyMate — Product Requirements Document (PRD / BRD)
-**Version:** 1.0
+**Version:** 1.1
 **Date:** March 2026
 **Status:** Draft
 
@@ -7,34 +7,51 @@
 
 ## 1. Executive Summary
 
-**ReplyMate** is a cross-platform mobile assistant app that helps users craft fast, thoughtful, and contextually appropriate replies — whether they are responding to a WhatsApp message, an Instagram DM, an email, a tweet, or a live in-person/phone conversation. Powered by an LLM backend and designed with a radically simple interface, ReplyMate understands multiple languages, mixed-language (code-switched) speech, and visual context (screenshots), and returns reply options the user can review, customize, and send.
+**ReplyMate** is a cross-platform mobile communication assistant that covers the full lifecycle of a conversation — helping users **start** a conversation, **reply** to one, and **follow up** when they don't hear back. Whether drafting a first message to a recruiter, responding to a WhatsApp thread, or nudging a contact who went silent, ReplyMate generates ready-to-send options in seconds.
+
+Powered by an LLM backend and designed with a radically simple interface, ReplyMate understands multiple languages, mixed-language (code-switched) speech, and visual context (screenshots). It also listens in real time during live conversations and surfaces reply suggestions on screen. Users get 2–3 options per request, choose their tone, and copy or share directly — no typing required.
 
 ---
 
 ## 2. Problem Statement
 
-Modern users receive messages across 5–10 communication channels daily. Crafting an appropriate, well-worded reply requires time, mental energy, and often clarity that isn't always available in the moment. Pain points include:
+Modern users manage communication across 5–10 channels daily. Every conversation has three moments where they get stuck — starting it, responding to it, and chasing it when it goes quiet. Pain points include:
 
-- **Reply paralysis** — not knowing what to say or how to start.
-- **Context switching** — jumping between apps to think through replies.
-- **Language complexity** — multilingual users think and speak in blended languages but most tools force a single language.
+**Responding**
+- **Reply paralysis** — not knowing what to say or how to phrase it.
+- **Context switching** — jumping between apps to think through a reply.
+- **Tone mismatch** — replies that land too formal, too casual, or simply unclear.
+
+**Initiating**
+- **Blank page problem** — knowing what you want to say but not how to open.
+- **Fear of sounding wrong** — especially in professional, sensitive, or cross-cultural contexts.
+- **Language barrier** — non-native speakers struggling to write confidently in a second language.
+
+**Following Up**
+- **Ghost anxiety** — someone hasn't replied; user doesn't know whether to follow up or how.
+- **Tone calibration** — following up too aggressively burns bridges; too softly gets ignored.
+- **No memory** — user has to re-read the original message and reconstruct context before writing.
+
+**Across all three**
+- **Language complexity** — multilingual users think in blended languages but most tools force a single language.
 - **Live conversations** — no tool assists in real-time spoken dialogue.
-- **Tone mismatch** — users often send replies that are too formal, too casual, or simply unclear.
 
 ---
 
 ## 3. Vision & Goals
 
 ### Vision
-Be the invisible, intelligent co-communicator in every user's pocket — helping them respond to anyone, in any language, in any context, faster and better.
+Be the invisible, intelligent co-communicator in every user's pocket — helping them start conversations, respond to anyone, and follow through — in any language, in any context, faster and better.
 
 ### Goals
 | Goal | Metric |
 |------|--------|
-| Reduce average reply drafting time | From ~3 min to <30 seconds |
+| Reduce average message drafting time | From ~3 min to <30 seconds |
+| Cover full conversation lifecycle | Reply, Initiate, and Follow-Up all in v1.0 |
 | Support multilingual & code-switched input | 50+ languages, unlimited mixing |
 | Achieve daily active usage | DAU/MAU ratio > 40% |
-| High reply acceptance rate | User sends LLM-drafted reply (with/without edits) >60% of time |
+| High message acceptance rate | User sends LLM-drafted message (with/without edits) >60% of time |
+| Follow-up feature adoption | ≥25% of active users use Follow-Up mode within first month |
 | Cross-platform parity | Feature-equivalent on iOS and Android on launch |
 
 ---
@@ -46,12 +63,20 @@ Be the invisible, intelligent co-communicator in every user's pocket — helping
 - Uses 4+ messaging apps daily
 - Bilingual or multilingual (e.g., speaks Marathi + Hindi + English)
 - Busy professional, student, or entrepreneur
-- Wants fast, smart, natural-sounding replies
+- Needs help at all three stages: starting conversations, replying, and following up
+- Wants fast, smart, natural-sounding messages without overthinking
+
+### Primary Persona — "The Initiator"
+- Age: 22–40
+- Regularly reaches out cold or semi-cold: job applications, client pitches, partnership proposals, reconnecting with contacts
+- Knows what they want to say but struggles with how to open or frame it
+- High stakes mean they want multiple options and tonal control before hitting send
 
 ### Secondary Persona — "The Non-Native Speaker"
 - Age: 18–60
 - Not fully confident writing in a second language (e.g., English at work)
 - Needs help phrasing thoughts clearly and professionally
+- Especially benefits from initiate and follow-up modes where blank-page anxiety is highest
 
 ### Tertiary Persona — "The Live Talker"
 - Attends meetings, calls, interviews, or negotiations
@@ -61,29 +86,65 @@ Be the invisible, intelligent co-communicator in every user's pocket — helping
 
 ## 5. Core Use Cases
 
+ReplyMate covers **three primary modes** that together span the full lifecycle of any conversation:
+
+---
+
+### MODE A — RESPOND (Inbound)
+*Someone has sent you a message and you need to reply.*
+
 ### UC-1: Reply to a Text Message / Chat Screenshot
-User takes or attaches a screenshot of a conversation (WhatsApp, Instagram, iMessage, etc.). The app reads the context, and suggests 2–3 reply options in the user's preferred style and language.
+User attaches a screenshot of a conversation (WhatsApp, Instagram, iMessage, email, etc.). The app reads the thread context and suggests 2–3 reply options in the user's preferred style and language.
 
 ### UC-2: Voice Input to Draft Reply
-User verbally describes what they want to say or what situation they're in. The app transcribes (handling multilingual/code-switched speech) and generates polished reply options.
+User verbally describes the situation or what they want to say. The app transcribes (handling multilingual/code-switched speech) and generates polished reply options.
 
 ### UC-3: Paste or Type the Incoming Message
 User manually pastes or types the message they received. The app generates reply options.
 
 ### UC-4: Live Conversation Mode
-User presses a "Live" button. The app continuously listens to what others are saying in a conversation (in-person or on a call), transcribes it, and surfaces reply suggestions in real time — quietly and discreetly on screen.
+User presses a "Live" button during an in-person meeting, phone call, or video call. The app continuously listens, transcribes what others are saying, and surfaces reply suggestions in real time — quietly and discreetly on screen.
 
-### UC-5: Initiate a Conversation (First Message)
-User wants to start a conversation, not reply to one. They describe the context — who they're reaching out to, what they want to say, and why — and the app drafts an opening message. Examples: reaching out to a recruiter, reconnecting with an old friend, pitching a collaboration, introducing yourself to a new colleague.
+---
+
+### MODE B — INITIATE (Outbound — First Message)
+*You are the one starting the conversation. No prior thread exists.*
+
+### UC-5: Draft an Opening Message
+User describes who they are writing to, what they want to say, and why — via voice or text. The app drafts 2–3 opening message options suited to the context and relationship. Examples:
+- Reaching out to a recruiter or hiring manager
+- Reconnecting with an old colleague or friend
+- Pitching a collaboration or business proposal
+- Introducing yourself to a new client or teammate
+- Asking a favour from someone you don't know well
+
+The app accounts for platform context (LinkedIn message ≠ WhatsApp ≠ formal email) and lets the user control tone from warm and personal to crisp and professional.
+
+---
+
+### MODE C — FOLLOW UP (Outbound — No Reply)
+*You sent a message. They haven't responded. You need to follow up without seeming desperate or aggressive.*
 
 ### UC-6: Follow-Up When No Reply Received
-User sent a message (or used the app to draft one) and hasn't heard back. They tell the app how long it's been, and the app drafts a tactful follow-up. The follow-up is context-aware — a nudge to a friend feels different from chasing a business lead. User can choose the urgency and tone (gentle reminder vs. assertive follow-up).
+User provides their original message (paste, describe, or pull from history) and tells the app how long it has been since sending. The app drafts a context-aware follow-up with three urgency options:
 
-### UC-7: Style Selection
-After generating replies, user can request a different tone — more formal, more casual, shorter, friendlier, assertive, apologetic, humorous, etc.
+| Urgency | Description |
+|---------|-------------|
+| **Gentle nudge** | Friendly, low-pressure — "Just checking in…" |
+| **Clear reminder** | Polite but direct — signals the ask is still open |
+| **Final follow-up** | Firm, closes the loop — signals this is the last attempt |
+
+The app understands that chasing a business lead requires a different tone than nudging a friend to confirm dinner plans. Users can also request a **follow-up sequence** (nudge → reminder → final), with suggested timing between each message.
+
+---
+
+### CROSS-CUTTING USE CASES (apply to all three modes)
+
+### UC-7: Style & Tone Selection
+After generating options, user can request a different tone — more formal, more casual, shorter, friendlier, assertive, apologetic, humorous, etc. — without re-entering their input.
 
 ### UC-8: Language Output Choice
-User can specify the language of the reply (e.g., "Reply in Marathi" or "Reply in formal Hindi with English tech terms").
+User specifies the language of the output (e.g., "Reply in Marathi", "Write in formal Hindi with English tech terms", "Make it Hinglish"). Output language is independent of input language.
 
 ---
 
@@ -164,11 +225,28 @@ Inspired by Google and Apple's minimalist app aesthetics:
 
 ```
 ┌─────────────────────────┐
-│   ReplyMate             │  ← Home / Input Screen
+│   ReplyMate             │  ← Home Screen (Mode Selector)
+│                         │
+│  ┌───────┐ ┌─────────┐  │
+│  │ 💬    │ │  ✉️     │  │
+│  │ Reply │ │ Initiate│  │
+│  └───────┘ └─────────┘  │
+│       ┌───────────┐      │
+│       │  🔁       │      │
+│       │ Follow Up │      │
+│       └───────────┘      │
+│                         │
+│  [🔴 Live Mode]         │
+│                         │
+│  Lang: [English ▾]      │
+└─────────────────────────┘
+
+┌─────────────────────────┐
+│   ReplyMate  [Reply]    │  ← Reply Input Screen
 │                         │
 │  ┌───────────────────┐  │
-│  │  What's the       │  │
-│  │  message about?   │  │
+│  │  What did they    │  │
+│  │  send you?        │  │
 │  │  [                │  │
 │  └───────────────────┘  │
 │                         │
@@ -377,22 +455,65 @@ Most STT and LLM tools fail at intra-sentence language mixing. ReplyMate must ha
 
 ## Appendix — Sample Prompt Architecture (LLM)
 
+### Mode A — Reply Prompt
 ```
 System:
 You are ReplyMate, an expert communication assistant.
-The user will give you a message they received (via text or described verbally).
+The user received a message and needs to reply.
 Generate exactly 3 reply options:
 - Option 1: Friendly and warm
 - Option 2: Professional and clear
 - Option 3: Concise (under 10 words)
 
 Rules:
-- Reply in [USER_LANGUAGE_PREFERENCE]
-- If the user's input mixes languages (e.g., Hindi + English), recognize it and reply in the same blend unless instructed otherwise
+- Write in [USER_LANGUAGE_PREFERENCE]
+- If input mixes languages (e.g., Hindi + English), reply in the same blend unless instructed otherwise
 - Match the platform context: [PLATFORM: WhatsApp / Email / Instagram / Other]
-- Do not add explanations — only return the 3 reply texts with tone labels
+- Return only the 3 reply texts with tone labels — no explanations
 
-User: [USER_INPUT or SCREENSHOT_OCR_TEXT]
+User input / message received: [USER_INPUT or SCREENSHOT_OCR_TEXT]
+```
+
+### Mode B — Initiate Prompt
+```
+System:
+You are ReplyMate, an expert communication assistant.
+The user wants to start a conversation from scratch (no prior thread).
+Generate exactly 3 opening message options:
+- Option 1: Warm and personal
+- Option 2: Professional and direct
+- Option 3: Brief and low-pressure
+
+Rules:
+- Write in [USER_LANGUAGE_PREFERENCE]
+- Tailor length and tone to the platform: [PLATFORM: LinkedIn / WhatsApp / Email / Other]
+- The message should feel natural and human — not like a template
+- Return only the 3 message texts with tone labels
+
+Context provided by user:
+- Recipient: [WHO]
+- Purpose: [WHAT / WHY]
+- Relationship: [e.g., cold outreach / old contact / new colleague]
+```
+
+### Mode C — Follow-Up Prompt
+```
+System:
+You are ReplyMate, an expert communication assistant.
+The user sent a message and received no reply. They need a follow-up.
+Generate exactly 3 follow-up options matching the urgency level selected:
+- Urgency: [GENTLE / CLEAR / FINAL]
+
+Rules:
+- Write in [USER_LANGUAGE_PREFERENCE]
+- Gentle: warm, non-pressuring, gives the benefit of the doubt
+- Clear: polite but unambiguous — signals the ask is still open
+- Final: firm and closing — signals this is the last follow-up
+- Platform context: [PLATFORM]
+- Time since original message: [X days / weeks]
+- Return only the 3 follow-up texts with urgency labels
+
+Original message sent by user: [ORIGINAL_MESSAGE]
 ```
 
 ---
